@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Harel's AI Agent Team Roster</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #0a0a0f;
+            --card-bg-color: #12121a;
+            --accent-purple: #6c63ff;
+            --accent-teal: #2dd4bf;
+            --text-color: #e8e8f0;
+            --secondary-text-color: #b0b0bb; /* Slightly dimmer for roles/taglines */
+            --code-bg-color: #1f1f2a; /* Darker bg for code */
+            --border-radius: 8px;
+            --padding-base: 1.5rem;
+            --gap-base: 1rem;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 20px;
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding-top: 2rem;
+        }
+
+        header h1 {
+            font-size: 3em;
+            color: var(--text-color);
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+        }
+
+        header h2 {
+            font-size: 1.2em;
+            color: var(--secondary-text-color);
+            font-weight: 400;
+        }
+
+        .intro-section {
+            background-color: var(--card-bg-color);
+            border-radius: var(--border-radius);
+            padding: var(--padding-base);
+            margin-bottom: 3rem;
+            text-align: center;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            border-top: 4px solid var(--accent-purple);
+        }
+
+        .intro-section p {
+            color: var(--secondary-text-color);
+            font-size: 1em;
+            margin: 0;
+        }
+
+        .agent-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: var(--gap-base);
+            margin-bottom: 4rem;
+        }
+
+        .agent-card {
+            background-color: var(--card-bg-color);
+            border-radius: var(--border-radius);
+            padding: var(--padding-base);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: transform 0.2s ease-in-out;
+            border-top: 4px solid transparent; /* Base for colored border */
+        }
+
+        .agent-card:hover {
+            transform: scale(1.02);
+        }
+
+        .agent-card.purple-border {
+            border-color: var(--accent-purple);
+        }
+
+        .agent-card.teal-border {
+            border-color: var(--accent-teal);
+        }
+
+        .agent-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 0.5rem;
+        }
+
+        .agent-emoji {
+            font-size: 2em;
+            margin-right: 0.75rem;
+            line-height: 1;
+        }
+
+        .agent-name {
+            font-size: 1.6em;
+            font-weight: 600;
+            color: var(--text-color);
+            margin: 0;
+        }
+
+        .agent-role {
+            font-size: 1em;
+            color: var(--accent-purple);
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+        }
+
+        .agent-card.teal-border .agent-role {
+            color: var(--accent-teal);
+        }
+
+        .agent-tagline {
+            font-size: 0.9em;
+            color: var(--secondary-text-color);
+            margin-bottom: 1rem;
+            flex-grow: 1; /* Allows tagline to take available space */
+        }
+
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: auto; /* Pushes skills to the bottom */
+            margin-bottom: 1rem;
+        }
+
+        .skill-tag {
+            background-color: rgba(108, 99, 255, 0.2); /* Purple with transparency */
+            color: var(--accent-purple);
+            font-size: 0.75em;
+            padding: 0.4em 0.7em;
+            border-radius: 4px;
+            font-weight: 500;
+            white-space: nowrap;
+        }
+
+        .agent-card.teal-border .skill-tag {
+            background-color: rgba(45, 212, 191, 0.2); /* Teal with transparency */
+            color: var(--accent-teal);
+        }
+
+        .trigger-phrase {
+            background-color: var(--code-bg-color);
+            color: var(--text-color);
+            font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace;
+            font-size: 0.8em;
+            padding: 0.5em 0.8em;
+            border-radius: 4px;
+            display: inline-block;
+            margin-top: 0.5rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 3rem;
+            padding-bottom: 2rem;
+            font-size: 0.9em;
+            color: var(--secondary-text-color);
+        }
+
+        footer a {
+            color: var(--accent-purple);
+            text-decoration: none;
+            transition: color 0.2s ease-in-out;
+        }
+
+        footer a:hover {
+            color: var(--text-color);
+            text-decoration: underline;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .agent-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2.5em;
+            }
+            header h2 {
+                font-size: 1.1em;
+            }
+            .agent-grid {
+                grid-template-columns: 1fr;
+            }
+            .intro-section {
+                padding: 1.2rem;
+            }
+            .agent-card {
+                padding: 1.2rem;
+            }
+            .agent-emoji {
+                font-size: 1.8em;
+            }
+            .agent-name {
+                font-size: 1.4em;
+            }
+        }
+
+        @media (max-width: 480px) {
+            body {
+                padding: 15px;
+            }
+            header h1 {
+                font-size: 2em;
+            }
+            header h2 {
+                font-size: 1em;
+            }
+            .container {
+                padding: 0 0.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Harel's AI Agent Team</h1>
+            <h2>9 specialized agents. One coherent system.</h2>
+        </header>
+
+        <section class="intro-section">
+            <p>Tasks are routed via <code class="trigger-phrase">/vision</code>. Cross-agent work goes through Vision backlog, processed daily at 7am IL.</p>
+        </section>
+
+        <section class="agent-grid">
+            <!-- C-SUITE agents -->
+            <div class="agent-card purple-border">
+                <div>
+                    <div class="agent-header">
+                        <span class="agent-emoji">🔭</span>
+                        <h3 class="agent-name">Vision</h3>
+                    </div>
+                    <p class="agent-role">COO - System architect and builder</p>
+                    <p class="agent-tagline">System architect and builder</p>
+                </div>
+                <div>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Agent Building</span>
+                        <span class="skill-tag">Workflow Design</span>
+                        <span class="skill-tag">System Architecture</span>
+                    </div>
+                    <code class="trigger-phrase">/vision</code>
+                </div>
+            </div>
+
+            <div class="agent-card purple-border">
+                <div>
+                    <div class="agent-header">
+                        <span class="agent-emoji">📢</span>
+                        <h3 class="agent-name">Jams</h3>
+                    </div>
+                    <p class="agent-role">CMO - Content strategy and brand authority</p>
+                    <p class="agent-tagline">Content strategy and brand authority</p>
+                </div>
+                <div>
+                    <div class="skill-tags">
+                        <span class="skill-tag">LinkedIn</span>
+                        <span class="skill-tag">Brand Voice</span>
+                        <span class="skill-tag">Campaigns</span>
+                    </div>
+                    <code class="trigger-phrase">draft post</code>
+                </div>
+            </div>
+
+            <div class="agent-card purple-border">
+                <div>
+                    <div class="agent-header">
+                        <span class="agent-emoji">⚙️</span>
+                        <h3 class="agent-name">Martin</h3>
+                    </div>
+                    <p class="agent-role">CTO - Infrastructure and automation reliability</p>
+                    <p class="agent-tagline">Infrastructure and automation reliability</p>
+                </div>
+                <div>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Automation</span>
+                        <span class="skill-tag">Model Routing</span>
+                        <span class="skill-tag">System Health</span>
+                    </div>
+                    <code class="trigger-phrase">tech issue</code>
+                </div>
+            </div>
+
+            <div class="agent-card purple-border">
+                <div>
+                    <div class="agent-header">
+                        <span class="agent-emoji">📊</span>
+                        <h3 class="agent-name">Albert</h3>
+                    </div>
+                    <p class="agent-role">CFO - Runway, pricing, unit economics</p>
+                    <p class="agent-tagline">Runway, pricing, unit economics</p>
+                </div>
+                <div>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Cash Runway</span>
+                        <span class="skill-tag">Pricing</span>
+                        <span class="skill-tag">Investment</span>
+                    </div>
+                    <code class="trigger-phrase">budget check</code>
+                </div>
+            </div>
+
+            <div class="agent-card purple-border">
+                <div>
+                    <div class="agent-header">
+                        <span class="agent-emoji">🎯</span>
+                        <h3 class="agent-name">Alex</h3>
+                    </div>
+                    <p class="agent-role">CRO - Pipeline, outreach, revenue motion</p>
+                    <p class="agent-tagline">Pipeline, outreach, revenue motion</p>
+                </div>
+                <div>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Pipeline</span>
+                        <span class="skill-tag">Account Plans</span>
+                        <span class="skill-tag">Outreach</span>
+                    </div>
+                    <code class="trigger-phrase">sales help</code>
+                </div>
+            </div>
+
+            <div class="agent-card purple-border">
+                <div>
+                    <div class="agent-header">
+                        <span class="agent-emoji">🗺️</span>
+                        <h3 class="agent-name">Dana</h3>
+                    </div>
+                    <p class="agent-role">CPO - Roadmap, specs, product discovery</p>
+                    <p class="agent-tagline">Roadmap, specs, product discovery</p>
+                </div>
+                <div>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Roadmap</span>
+                        <span class="skill-tag">Specs</span>
+                        <span class="skill-tag">Analytics</span>
+                    </div>
+                    <code class="trigger-phrase">product spec</code>
+                </div>
+            </div>
+
+            <!-- SPECIALTY agents -->
+            <div class="agent-card teal-border">
+                <div>
+                    <div class="agent-header">
+                        <span class="agent-emoji">🔨</span>
+                        <h3 class="agent-name">Ben</h3>
+                    </div>
+                    <p class="agent-role">Prototype Builder - Ideas to working prototypes fast</p>
+                    <p class="agent-tagline">Ideas to working prototypes fast</p>
+                </div>
+                <div>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Base44</span>
+                        <span class="skill-tag">Gemini CLI</span>
+                        <span class="skill-tag">GitHub Pages</span>
+                    </div>
+                    <code class="trigger-phrase">build this</code>
+                </div>
+            </div>
+
+            <div class="agent-card teal-border">
+                <div>
+                    <div class="agent-header">
+                        <span class="agent-emoji">🌍</span>
+                        <h3 class="agent-name">Maya</h3>
+                    </div>
+                    <p class="agent-role">Travel Lead - Weekend plans, family trips, Hebrew</p>
+                    <p class="agent-tagline">Weekend plans, family trips, Hebrew</p>
+                </div>
+                <div>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Weekend Plans</span>
+                        <span class="skill-tag">Travel</span>
+                        <span class="skill-tag">Family</span>
+                    </div>
+                    <code class="trigger-phrase">trip idea</code>
+                </div>
+            </div>
+
+            <div class="agent-card teal-border">
+                <div>
+                    <div class="agent-header">
+                        <span class="agent-emoji">🏠</span>
+                        <h3 class="agent-name">Tabu</h3>
+                    </div>
+                    <p class="agent-role">Real Estate - Israeli property market and tenders</p>
+                    <p class="agent-tagline">Israeli property market and tenders</p>
+                </div>
+                <div>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Israeli Market</span>
+                        <span class="skill-tag">Tenders</span>
+                        <span class="skill-tag">Rentals</span>
+                    </div>
+                    <code class="trigger-phrase">real estate</code>
+                </div>
+            </div>
+        </section>
+
+        <footer>
+            Built with ABC-TOM framework | <a href="https://github.com/RLASAF12/ai-agent-roster" target="_blank" rel="noopener noreferrer">github.com/RLASAF12/ai-agent-roster</a>
+        </footer>
+    </div>
+</body>
+</html>
