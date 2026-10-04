@@ -1,3 +1,5 @@
+> **Archived.** This repo moved to the private repo RLASAF12/agent-starters (folder `ai-agent-roster/`, full history preserved). Archived 2026-10-04.
+
 # Harel's AI Agent Team Roster
 
 > 9 specialized agents. One coherent system.
